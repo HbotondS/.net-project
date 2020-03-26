@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="TMCatalog.View.UserControllers.VehicleSearch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!-- Vehicle selection-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="210"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0"> Menufacturer</Label>
+            <ComboBox Grid.Row="0" Margin="5" MinWidth="200" Width="200" Height="25" Grid.Column="1" ItemsSource="{Binding Manufacturers}" 
+                    SelectedValue="{Binding ManufacturerId}"
+                      SelectedValuePath="Id"
+                      DisplayMemberPath="Description"> </ComboBox>
+            <Label Grid.Row="1" Grid.Column="0" >Model </Label>
+            <ComboBox Grid.Row="1" Margin="5 5 0 5"  MinWidth="200" Width="200"  Height="25" Grid.Column="1" 
+                      SelectedValue="{Binding ModelId, Mode=TwoWay}"
+                      SelectedValuePath="Id"
+                      ItemsSource="{Binding Models, Mode=OneWay}" DisplayMemberPath="Description"></ComboBox>
+        </Grid>
+        <!--vehicle types-->
+        <DataGrid Grid.Row="1" Margin="5 0 5 5" AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectedItem="{Binding SelectedVehicleType}" ItemsSource="{Binding VehicleTypes}">
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenArticleTabCommand}"/>
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Model" Width="2*" Binding="{Binding Model.Description}" />
+                <DataGridTextColumn Header="Type" Width="3*" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Fuel Type" Width="60" Binding="{Binding FuelType.Description}" />
+                <DataGridTextColumn Header="From" Width="40" Binding="{Binding ProductionYearFrom}" />
+                <DataGridTextColumn Header="To" Width="40" Binding="{Binding ProductionYearTo}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        
+    </Grid>
+    
+</UserControl>
