@@ -7,20 +7,19 @@
 
 namespace TMCatalogClient.Model
 {
-  using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
+    using TMCatalog.Common.Helpers;
 
-  /// <summary>
-  /// Product
-  /// </summary>
-  public class Product
-  {
-    [Key]
-    public int Id { get; set; }
+    /// <summary>
+    /// Product
+    /// </summary>
+    public class Product: ProductBase
+    {
+        [Key]
+        public int Id { get; set; }
 
-    public string Description { get; set; }
+        public int ProductGroupId { get; set; }
 
-    public int ProductGroupId { get; set; }
-
-    public ProductGroup ProductGroup { get; set; }
-  }
+        public ProductGroup ProductGroup { get; set; }
+    }
 }

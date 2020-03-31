@@ -7,22 +7,23 @@
 
 namespace TMCatalogClient.Model
 {
-  using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
+    using TMCatalog.Common.Interfaces;
 
-  /// <summary>
-  /// Article
-  /// </summary>
-  public class Article
-  {
-    [Key]
-    public int Id { get; set; }
+    /// <summary>
+    /// Article
+    /// </summary>
+    public class Article: IArticle
+    {
+        [Key]
+        public int Id { get; set; }
 
-    public string ArticleNumber { get; set; }
+        public string ArticleNumber { get; set; }
 
-    public string Description { get; set; }
+        public string Description { get; set; }
 
-    public int ProductId { get; set; }
+        public int ProductId { get; set; }
 
-    public Product Product { get; set; }
-  }
+        public Product Product { get; set; }
+    }
 }
