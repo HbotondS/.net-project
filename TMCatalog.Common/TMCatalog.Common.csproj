@@ -52,6 +52,11 @@
     <Compile Include="Helpers\ProductBase.cs" />
     <Compile Include="Helpers\ProductGroupBase.cs" />
     <Compile Include="Interfaces\IArticle.cs" />
+    <Compile Include="Interfaces\TMCatalogContents\IArticleContent.cs" />
+    <Compile Include="Interfaces\TMCatalogContents\IClosableContent.cs" />
+    <Compile Include="Interfaces\TMCatalogContents\IShoppingBasket.cs" />
+    <Compile Include="Interfaces\TMCatalogContents\ITMCatalogContent.cs" />
+    <Compile Include="Interfaces\TMCatalogContents\IVehicleSearchContent.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="MVVM\ViewService.cs" />

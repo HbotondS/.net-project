@@ -7,23 +7,61 @@
 
 namespace TMCatalog.ViewModel
 {
-  using TMCatalog.Common.MVVM;
-  using TMCatalog.Logic;
+    using System.Collections.ObjectModel;
+    using TMCatalog.Common.Interfaces.TMCatalogContents;
+    using TMCatalog.Common.MVVM;
+    using TMCatalog.Logic;
     using TMCatalog.ViewModel;
     using TMCatalog.ViewModel.UserControlls;
     using TMCatalogClient.Model;
 
     public class MainWindowViewModel : ViewModelBase
     {
+        public static MainWindowViewModel Instance { get; set; }
 
         public static CatalogController CatalogController;
+
+        private ObservableCollection<ITMCatalogContent> contents;
+        public ObservableCollection<ITMCatalogContent> Contents
+        {
+            get { return contents; }
+            set
+            {
+                contents = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
+        private ITMCatalogContent selectedContent;
+        public ITMCatalogContent SelectedContent
+        {
+            get { return selectedContent; }
+            set
+            {
+                selectedContent = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
+        private VehicleSearchViewModel vehicleSearchViewModel;
+        public VehicleSearchViewModel VehicleSearchViewModel
+        {
+            get { return this.vehicleSearchViewModel; }
+            set
+            {
+                this.vehicleSearchViewModel = value;
+                this.RaisePropertyChanged();
+            }
+        }
 
         public MainWindowViewModel()
         {
             CatalogController = new CatalogController();
             this.CloseCommand = new RelayCommand(this.CloseCommandExecute);
             this.VehicleSearchViewModel = new VehicleSearchViewModel();
-            this.ArticleViewModel = new ArticleViewModel();
+            this.Contents = new ObservableCollection<ITMCatalogContent>();
+            this.Contents.Add(vehicleSearchViewModel);
+            this.SelectedContent = vehicleSearchViewModel;
             Instance = this;
         }
 
@@ -33,31 +71,17 @@ namespace TMCatalog.ViewModel
         {
             ViewService.CloseDialog(this);
         }
-        private VehicleSearchViewModel vehicleSearchViewModel;
 
-        public VehicleSearchViewModel VehicleSearchViewModel
+        public void CloseArticle(ArticleViewModel articleViewModel)
         {
-            get { return this.vehicleSearchViewModel; }
-            set {
-                this.vehicleSearchViewModel = value;
-                this.RaisePropertyChanged();
-            }
+            this.Contents.Remove(articleViewModel);
         }
 
-        public static MainWindowViewModel Instance { get; set; }
         public void SetVehicleTypeToArticle(VehicleType vehicleType)
         {
-            this.ArticleViewModel.VehicleType = vehicleType;
-
+            ArticleViewModel articleViewModel = new ArticleViewModel(vehicleType);
+            this.Contents.Add(articleViewModel);
+            this.SelectedContent = articleViewModel;
         }
-        private ArticleViewModel articleViewModel;
-
-        public ArticleViewModel ArticleViewModel
-        {
-            get { return articleViewModel; }
-            set { articleViewModel = value; }
-        }
-
-
     }
 }
