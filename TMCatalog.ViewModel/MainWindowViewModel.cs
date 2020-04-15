@@ -7,19 +7,17 @@
 
 namespace TMCatalog.ViewModel
 {
-  using TMCatalog.Common.MVVM;
-  using TMCatalog.Logic;
-  using TMCatalog.ViewModel;
-  using TMCatalog.ViewModel.UserControlls;
-  using TMCatalogClient.Model;
-  using System.Collections.ObjectModel;
-  using TMCatalog.Common.Interfaces;
-  using TMCatalog.Common.Interfaces.TMCatalogContents;
+    using System.Collections.ObjectModel;
+    using TMCatalog.Common.Interfaces.TMCatalogContents;
+    using TMCatalog.Common.MVVM;
+    using TMCatalog.Logic;
+    using TMCatalog.ViewModel;
+    using TMCatalog.ViewModel.UserControlls;
+    using TMCatalogClient.Model;
 
     public class MainWindowViewModel : ViewModelBase
     {
-
-		public static MainWindowViewModel Instance { get; set; }
+        public static MainWindowViewModel Instance { get; set; }
 
         public static CatalogController CatalogController;
         

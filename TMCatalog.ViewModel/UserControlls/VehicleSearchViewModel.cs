@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TMCatalog.Common.MVVM;
 using TMCatalog.Logic;
 using TMCatalogClient.Model;
@@ -10,21 +6,21 @@ using TMCatalog.Common.Interfaces.TMCatalogContents;
 
 namespace TMCatalog.ViewModel.UserControlls
 {
-    public class VehicleSearchViewModel : ViewModelBase,IVehicleSearchContent
+    public class VehicleSearchViewModel : ViewModelBase, IVehicleSearchContent
     {
         public string Header => "Vehicle Search";
 
         public RelayCommand OpenArticleTabCommand
         {
-            get;set;
+            get; set;
         }
-              
+
         public VehicleSearchViewModel()
         {
             this.Manufacturers = Data.Catalog.GetManufacturers();
             this.OpenArticleTabCommand = new RelayCommand(this.OpenArticleTabExecute);
         }
-		private List<Manufacturer> manufacturers;
+        private List<Manufacturer> manufacturers;
         public List<Manufacturer> Manufacturers
         {
             get
@@ -38,9 +34,9 @@ namespace TMCatalog.ViewModel.UserControlls
                 this.RaisePropertyChanged();
             }
         }
-        
+
         private List<TMCatalogClient.Model.Model> models;
-		public List<TMCatalogClient.Model.Model> Models
+        public List<TMCatalogClient.Model.Model> Models
         {
             get { return models; }
             set
@@ -49,19 +45,19 @@ namespace TMCatalog.ViewModel.UserControlls
                 this.RaisePropertyChanged();
             }
         }
-        
+
         private List<VehicleType> vehicleTypes;
         public List<VehicleType> VehicleTypes
         {
             get { return vehicleTypes; }
-            set 
-            { 
-            	vehicleTypes = value;
-				this.RaisePropertyChanged();
+            set
+            {
+                vehicleTypes = value;
+                this.RaisePropertyChanged();
             }
         }
-        
-         private int manufacturerId;
+
+        private int manufacturerId;
         public int ManufacturerId
         {
             get
@@ -75,8 +71,8 @@ namespace TMCatalog.ViewModel.UserControlls
                 this.RaisePropertyChanged();
             }
         }
-        
-                private int modelId;
+
+        private int modelId;
         public int ModelId
         {
             get
@@ -90,8 +86,8 @@ namespace TMCatalog.ViewModel.UserControlls
                 this.RaisePropertyChanged();
             }
         }
-        
-         private VehicleType selectedVehicleType;
+
+        private VehicleType selectedVehicleType;
         public VehicleType SelectedVehicleType
         {
             get
@@ -100,12 +96,12 @@ namespace TMCatalog.ViewModel.UserControlls
             }
             set
             {
-                this.selectedVehicleType = value;            
+                this.selectedVehicleType = value;
                 this.RaisePropertyChanged();
             }
         }
 
-		private int tabIndex;
+        private int tabIndex;
         public int TabIndex
         {
             get => tabIndex;
@@ -116,17 +112,17 @@ namespace TMCatalog.ViewModel.UserControlls
             }
         }
 
- 		public VehicleType MyProperty
+        public VehicleType MyProperty
         {
             get { return SelectedVehicleType; }
             set { SelectedVehicleType = value; }
         }
-        
+
         private void OpenArticleTabExecute()
         {
             this.TabIndex = 1;
             MainWindowViewModel.Instance.SetVehicleTypeToArticle(this.SelectedVehicleType);
 
-        }        
+        }
     }
 }
