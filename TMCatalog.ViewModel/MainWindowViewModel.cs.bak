@@ -87,6 +87,7 @@ namespace TMCatalog.ViewModel
             ArticleViewModel articleViewModel = new ArticleViewModel(vehicleType);
             this.Contents.Add(articleViewModel);
             this.SelectedContent = articleViewModel;
-		} 			
+		}
+ 			
     }
 }

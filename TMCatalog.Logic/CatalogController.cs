@@ -1,4 +1,4 @@
-﻿// ------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------
 // <copyright file="CatalogController.cs" company="DVSE GmbH">
 //   Copyright (c) by DVSE Gesellschaft für Datenverarbeitung, Service und Entwicklung mbH. All rights reserved.
 // </copyright>
@@ -63,13 +63,12 @@ namespace TMCatalog.Logic
 
         public List<Article> GetArticles(int productID)
         {
-            return this.catalogDatabase.Articles.Where(x => x.ProductId == productID).ToList();
+            return this.catalogDatabase.Articles.Where(x => x.ProductId == productID).ToList() ?? new List<Article>();
         }
 
         public Stock GetArticleStock(int articleID)
         {
             return this.catalogDatabase.Stocks.FirstOrDefault(x => x.ArticleId == articleID);
         }
-
     }
 }

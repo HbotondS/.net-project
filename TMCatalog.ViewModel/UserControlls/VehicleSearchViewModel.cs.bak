@@ -127,6 +127,16 @@ namespace TMCatalog.ViewModel.UserControlls
             this.TabIndex = 1;
             MainWindowViewModel.Instance.SetVehicleTypeToArticle(this.SelectedVehicleType);
 
-        }        
+        }
+
+        //private bool OpenVehicleCanExecute()
+        //{
+        //    return this.SelectedVehicleType != null;
+        //}
+
+        //private void OpenVehicleExecute()
+        //{
+        //    MainWindowViewModel.Instance.SetVehicleTypeToArticle(SelectedVehicleType);
+        //}         
     }
 }

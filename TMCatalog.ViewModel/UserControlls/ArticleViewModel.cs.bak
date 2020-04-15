@@ -34,7 +34,7 @@ namespace TMCatalog.ViewModel.UserControlls
         
         public ArticleViewModel(VehicleType vehicleType)
         {
-            this.VehicleType = vehicleType;
+            this.SelectedVehicleType = vehicleType;
             this.CloseCommand = new RelayCommand(this.CloseExecute);
         }
         

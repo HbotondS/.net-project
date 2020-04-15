@@ -48,9 +48,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="0" ItemsSource="{Binding Contents}" 
-        	SelectedItem="{Binding SelectedContent}" 
-        	ContentTemplateSelector="{StaticResource tmCatalogContentTemplateSelector}"/>
+        <TabControl Grid.Row="0" ItemsSource="{Binding Contents}" SelectedItem="{Binding SelectedContent}" ContentTemplateSelector="{StaticResource tmCatalogContentTemplateSelector}"/>
         <Button Grid.Row="1"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"

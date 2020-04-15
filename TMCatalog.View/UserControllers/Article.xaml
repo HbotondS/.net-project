@@ -4,9 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TMCatalog.View.UserControllers"
+             xmlns:helpers="clr-namespace:TMCatalog.Common.Helpers;assembly=TMCatalog.Common"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:TMCatalog.Common.Behaviors;assembly=TMCatalog.Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="{Binding VehicleType.Description}" FontSize="40"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="{Binding SelectedVehicleType.Description}" FontSize="25"/>
+        <TreeView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding ProductGroups}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type helpers:ProductGroupBase}" ItemsSource="{Binding Products}">
+                    <TextBlock Text="{Binding Description}"></TextBlock>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type helpers:ProductBase}">
+                    <TextBlock Text="{Binding Description}"></TextBlock>
+                </DataTemplate>
+            </TreeView.Resources>
+            <i:Interaction.Behaviors>
+                <behaviors:TreeViewSelectedItemBehavior SelectedItem="{Binding SelectedProduct,Mode=Twoway}"/>
+            </i:Interaction.Behaviors>
+        </TreeView>
+        <DataGrid Grid.Column="1" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Articles}" SelectedItem="{Binding SelectedArticle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"  Width="1*" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Articlenr" Width="1*" Binding="{Binding ArticleNumber}"/>
+                <DataGridTextColumn Header="Description" Width="2*" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Product ID"  Width="1*" Binding="{Binding ProductId}"/>
+                <DataGridTextColumn Header="Product"  Width="2*" Binding="{Binding Product.Description}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
