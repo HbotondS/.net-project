@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TMCatalog.Common.MVVM;
 using TMCatalogClient.Model;
 using TMCatalog.Common.Interfaces.TMCatalogContents;
@@ -15,7 +11,7 @@ namespace TMCatalog.ViewModel.UserControlls
         public string Header => this.VehicleType.Description;
 
         public RelayCommand CloseCommand { get; }
-        
+
         private VehicleType vehicleType;
 
         public VehicleType VehicleType
@@ -31,14 +27,15 @@ namespace TMCatalog.ViewModel.UserControlls
                 this.RaisePropertyChanged();
             }
         }
-        
+
         public ArticleViewModel(VehicleType vehicleType)
         {
             this.VehicleType = vehicleType;
             this.CloseCommand = new RelayCommand(this.CloseExecute);
+            this.AddToShoppingBasketCommand = new RelayCommand(this.AddToShoppingBasketExecute, this.AddToShoppingBasketCanExecute);
         }
-        
-         private void CloseExecute()
+
+        private void CloseExecute()
         {
             MainWindowViewModel.Instance.CloseArticle(this);
         }
@@ -80,7 +77,7 @@ namespace TMCatalog.ViewModel.UserControlls
 
             }
         }
-        
+
         private Article selectedArticle;
 
         public Article SelectedArticle
@@ -109,6 +106,17 @@ namespace TMCatalog.ViewModel.UserControlls
                 }
                 this.Articles = templist;
             }
+        }
+
+        private bool AddToShoppingBasketCanExecute()
+        {
+            return this.SelectedArticle != null;
+        }
+
+        public RelayCommand AddToShoppingBasketCommand { get; }
+        private void AddToShoppingBasketExecute()
+        {
+            MainWindowViewModel.Instance.AddToShoppingBasket(this.SelectedArticle);
         }
     }
 }

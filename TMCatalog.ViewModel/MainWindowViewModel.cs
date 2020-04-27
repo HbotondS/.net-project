@@ -20,7 +20,7 @@ namespace TMCatalog.ViewModel
         public static MainWindowViewModel Instance { get; set; }
 
         public static CatalogController CatalogController;
-        
+
         private ObservableCollection<ITMCatalogContent> contents;
         public ObservableCollection<ITMCatalogContent> Contents
         {
@@ -43,29 +43,32 @@ namespace TMCatalog.ViewModel
             }
         }
 
-		private VehicleSearchViewModel vehicleSearchViewModel;
+        private VehicleSearchViewModel vehicleSearchViewModel;
         public VehicleSearchViewModel VehicleSearchViewModel
         {
             get { return this.vehicleSearchViewModel; }
-            set {
+            set
+            {
                 this.vehicleSearchViewModel = value;
                 this.RaisePropertyChanged();
             }
-        }   
-		
+        }
+
         public MainWindowViewModel()
         {
             CatalogController = new CatalogController();
             this.CloseCommand = new RelayCommand(this.CloseCommandExecute);
 
             this.VehicleSearchViewModel = new VehicleSearchViewModel();
-                       
+
+            this.shoppingBasketContent = new ShoppingBasketViewModel();
+
             this.Contents = new ObservableCollection<ITMCatalogContent>();
-            
             this.Contents.Add(vehicleSearchViewModel);
-            
+            this.Contents.Add(shoppingBasketContent);
+
             this.SelectedContent = vehicleSearchViewModel;
-            
+
             Instance = this;
         }
 
@@ -74,17 +77,24 @@ namespace TMCatalog.ViewModel
         {
             ViewService.CloseDialog(this);
         }
-        
-		public void CloseArticle(ArticleViewModel articleViewModel)
+
+        public void CloseArticle(ArticleViewModel articleViewModel)
         {
             this.Contents.Remove(articleViewModel);
         }
 
-		public void SetVehicleTypeToArticle(VehicleType vehicleType)
+        public void SetVehicleTypeToArticle(VehicleType vehicleType)
         {
             ArticleViewModel articleViewModel = new ArticleViewModel(vehicleType);
             this.Contents.Add(articleViewModel);
             this.SelectedContent = articleViewModel;
-		} 			
+        }
+
+        private IShoppingBasket shoppingBasketContent { get; }
+        public void AddToShoppingBasket(Article article)
+        {
+            this.shoppingBasketContent.AddToShoppingBasket(article);
+            this.SelectedContent = this.shoppingBasketContent;
+        }
     }
 }

@@ -64,6 +64,9 @@
     <Compile Include="UserControllers\Article.xaml.cs">
       <DependentUpon>Article.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControllers\ShoppingBasket.xaml.cs">
+      <DependentUpon>ShoppingBasket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControllers\VehicleSearch.xaml.cs">
       <DependentUpon>VehicleSearch.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControllers\Article.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControllers\ShoppingBasket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

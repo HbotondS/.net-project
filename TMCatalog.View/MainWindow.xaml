@@ -20,6 +20,9 @@
         <DataTemplate x:Key="ArticleTemplate">
             <userControls:Article/>
         </DataTemplate>
+        <DataTemplate x:Key="ShoppingBasketTemplate">
+            <userControls:ShoppingBasket/>
+        </DataTemplate>
 
         <templateSelectors:TMCatalogContentTemplateSelector x:Key="tmCatalogContentTemplateSelector"/>
         <templateSelectors:TMCatalogHeaderTemplateSelector x:Key="tmCatalogHeaderTemplateSelector"/>

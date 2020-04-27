@@ -42,6 +42,12 @@
                 <DataGridTextColumn Header="Product ID"  Width="1*" Binding="{Binding ProductId}"/>
                 <DataGridTextColumn Header="Product"  Width="2*" Binding="{Binding Product.Description}"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add to Shopping Basket"
+                              Command="{Binding AddToShoppingBasketCommand}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
 </UserControl>
