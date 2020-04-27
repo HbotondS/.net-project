@@ -13,7 +13,7 @@ namespace TMCatalogClient.Model
     /// <summary>
     /// Article
     /// </summary>
-    public class Article: IArticle
+    public class Article : IArticle
     {
         [Key]
         public int Id { get; set; }

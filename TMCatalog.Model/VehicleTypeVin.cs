@@ -7,18 +7,18 @@
 
 namespace TMCatalogClient.Model
 {
-  using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
 
-  /// <summary>
-  /// Vechicle type vin relation
-  /// </summary>
-  public class VehicleTypeVin
-  {
-    [Key]
-    public string VIN { get; set; }
+    /// <summary>
+    /// Vechicle type vin relation
+    /// </summary>
+    public class VehicleTypeVin
+    {
+        [Key]
+        public string VIN { get; set; }
 
-    public int VehicleTypeId { get; set; }
+        public int VehicleTypeId { get; set; }
 
-    public VehicleType VehicleType { get; set; }
-  }
+        public VehicleType VehicleType { get; set; }
+    }
 }

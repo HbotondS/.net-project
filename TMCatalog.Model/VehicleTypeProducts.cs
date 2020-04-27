@@ -10,19 +10,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TMCatalogClient.Model
 {
-  /// <summary>
-  /// Vehicle type associated products
-  /// </summary>
-  public class VehicleTypeProducts
-  {
-    [Key, Column(Order=0)]
-    public int ProductId { get; set; }
+    /// <summary>
+    /// Vehicle type associated products
+    /// </summary>
+    public class VehicleTypeProducts
+    {
+        [Key, Column(Order = 0)]
+        public int ProductId { get; set; }
 
-    public Product Product { get; set; }
+        public Product Product { get; set; }
 
-    [Key, Column(Order=1)]
-    public int VehicleTypeId { get; set; }
+        [Key, Column(Order = 1)]
+        public int VehicleTypeId { get; set; }
 
-    public VehicleType VehicleType { get; set; }
-  }
+        public VehicleType VehicleType { get; set; }
+    }
 }

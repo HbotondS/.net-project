@@ -13,7 +13,7 @@ namespace TMCatalogClient.Model
     /// <summary>
     /// Product
     /// </summary>
-    public class Product: ProductBase
+    public class Product : ProductBase
     {
         [Key]
         public int Id { get; set; }

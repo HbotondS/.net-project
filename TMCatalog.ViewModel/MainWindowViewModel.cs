@@ -11,7 +11,6 @@ namespace TMCatalog.ViewModel
     using TMCatalog.Common.Interfaces.TMCatalogContents;
     using TMCatalog.Common.MVVM;
     using TMCatalog.Logic;
-    using TMCatalog.ViewModel;
     using TMCatalog.ViewModel.UserControlls;
     using TMCatalogClient.Model;
 

@@ -7,20 +7,20 @@
 
 namespace TMCatalogClient.Model
 {
-  using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
 
-  /// <summary>
-  /// Stock
-  /// </summary>
-  public class Stock
-  {
-    [Key]
-    public int ArticleId { get; set; }
+    /// <summary>
+    /// Stock
+    /// </summary>
+    public class Stock
+    {
+        [Key]
+        public int ArticleId { get; set; }
 
-    public Article Article { get; set; }
+        public Article Article { get; set; }
 
-    public int Quantity { get; set; }
+        public int Quantity { get; set; }
 
-    public decimal Price { get; set; }
-  }
+        public decimal Price { get; set; }
+    }
 }

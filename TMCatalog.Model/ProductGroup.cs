@@ -12,7 +12,7 @@ namespace TMCatalogClient.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using TMCatalog.Common.Helpers;
 
-    public class ProductGroup: ProductGroupBase
+    public class ProductGroup : ProductGroupBase
     {
         [Key]
         public int Id { get; set; }

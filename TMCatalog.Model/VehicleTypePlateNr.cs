@@ -7,15 +7,15 @@
 
 namespace TMCatalogClient.Model
 {
-  using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
 
-  public class VehicleTypePlateNr
-  {
-    [Key]
-    public string PlateNr { get; set; }
+    public class VehicleTypePlateNr
+    {
+        [Key]
+        public string PlateNr { get; set; }
 
-    public int VehicleTypeId { get; set; }
+        public int VehicleTypeId { get; set; }
 
-    public VehicleType VehicleType { get; set; }
-  }
+        public VehicleType VehicleType { get; set; }
+    }
 }
