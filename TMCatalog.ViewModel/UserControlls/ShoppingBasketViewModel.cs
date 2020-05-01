@@ -11,6 +11,8 @@ namespace TMCatalog.ViewModel.UserControlls
     class ShoppingBasketViewModel : ViewModelBase, IShoppingBasket
     {
         public string Header => "Shopping Basket";
+        public int TotalItemCount { get; set; }
+        public decimal TotalPrice { get; set; }
 
         public ShoppingBasketViewModel()
         {
@@ -19,6 +21,9 @@ namespace TMCatalog.ViewModel.UserControlls
             this.ClearBasket = new RelayCommand(this.ClearShoppingBasket);
             
             this.RemoveFromShoppingBasket = new RelayCommand(this.RemoveFromShoppingBasketExecute, this.RemoveFromShoppingBasketCanExecute);
+
+            this.TotalItemCount = 0;
+            this.TotalPrice = 0;
         }
 
         public void AddToShoppingBasket(IArticle article)
@@ -27,6 +32,9 @@ namespace TMCatalog.ViewModel.UserControlls
             Stock stock = Data.Catalog.GetArticleStock(tempArticle.Id);
             stock.Article = tempArticle;
             this.StockCollection.Add(stock);
+            this.TotalItemCount += stock.Quantity;
+            this.TotalPrice += stock.Price;
+            System.Console.WriteLine(this.TotalItemCount);
         }
 
         private ObservableCollection<Stock> stockCollection;
