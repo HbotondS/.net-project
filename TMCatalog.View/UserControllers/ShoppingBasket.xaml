@@ -11,6 +11,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Button Grid.Row="0"
                 HorizontalAlignment="Right"
@@ -44,5 +45,6 @@
             <Label Grid.Row="1" Grid.Column="0" Content="Total price:"/>
             <Label Grid.Row="1" Grid.Column="1" Content="{Binding TotalPrice}"/>
         </Grid>
+        <Button Grid.Row="3" Content="Order" HorizontalAlignment="Right" Command="{Binding OrderItemsCommand}"/>
     </Grid>
 </UserControl>

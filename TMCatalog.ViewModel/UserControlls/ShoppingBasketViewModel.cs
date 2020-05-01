@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Windows.Forms;
+using System.Xml;
 using TMCatalog.Common.Interfaces;
 using TMCatalog.Common.Interfaces.TMCatalogContents;
 using TMCatalog.Common.MVVM;
@@ -19,6 +22,7 @@ namespace TMCatalog.ViewModel.UserControlls
             this.StockCollection = new ObservableCollection<Stock>();
 
             this.ClearBasket = new RelayCommand(this.ClearShoppingBasket);
+            this.OrderItemsCommand = new RelayCommand(this.OrderItems);
             
             this.RemoveFromShoppingBasket = new RelayCommand(this.RemoveFromShoppingBasketExecute, this.RemoveFromShoppingBasketCanExecute);
 
@@ -74,6 +78,33 @@ namespace TMCatalog.ViewModel.UserControlls
         private bool RemoveFromShoppingBasketCanExecute()
         {
             return this.SelectedItem != null;
+        }
+        
+        public RelayCommand OrderItemsCommand { get; set; }
+        public void OrderItems()
+        {
+            var fbd = new FolderBrowserDialog();
+            DialogResult result = fbd.ShowDialog();
+
+            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            {
+                string[] files = Directory.GetFiles(fbd.SelectedPath);
+
+                XmlWriter xmlWriter = XmlWriter.Create(fbd.SelectedPath + "/order.xml");
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("Order");
+                stockCollection.ToList().All(o =>
+                {
+                    xmlWriter.WriteStartElement("Item");
+                    xmlWriter.WriteAttributeString("Description", o.Article.Description);
+                    xmlWriter.WriteAttributeString("Quantity", o.Quantity.ToString());
+                    xmlWriter.WriteAttributeString("Price", o.Price.ToString());
+                    xmlWriter.WriteEndElement();
+                    return false;
+                });
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Close();
+            }
         }
     }
 }
