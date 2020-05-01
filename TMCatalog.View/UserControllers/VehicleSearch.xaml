@@ -22,15 +22,16 @@
                 <ColumnDefinition Width="210"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0">Manufacturer:</Label>
-            <ComboBox Grid.Row="0" Margin="5" MinWidth="200" Width="200" Height="25" Grid.Column="1" ItemsSource="{Binding Manufacturers}" 
+            <ComboBox Grid.Row="0" Margin="5" MinWidth="200" Width="200" Height="25" Grid.Column="1"
+                    ItemsSource="{Binding Manufacturers}" 
                     SelectedValue="{Binding ManufacturerId}"
                     SelectedValuePath="Id"
-                      DisplayMemberPath="Description"> </ComboBox>
-            <Label Grid.Row="1" Grid.Column="0" >Model </Label>
-            <ComboBox Grid.Row="1" Margin="5 5 0 5" MinWidth="200" Width="200"  Height="25" Grid.Column="1" 
+                    DisplayMemberPath="Description"/>
+            <Label Grid.Row="1" Grid.Column="0">Model:</Label>
+            <ComboBox Grid.Row="1" Margin="5" MinWidth="200" Width="200" Height="25" Grid.Column="1" 
                       SelectedValue="{Binding ModelId, Mode=TwoWay}"
                       SelectedValuePath="Id"
-                      ItemsSource="{Binding Models, Mode=OneWay}" DisplayMemberPath="Description"></ComboBox>
+                      ItemsSource="{Binding Models, Mode=OneWay}" DisplayMemberPath="Description"/>
         </Grid>
         <!--vehicle types-->
         <DataGrid Grid.Row="1" Margin="5 0 5 5" AutoGenerateColumns="False" IsReadOnly="True"
