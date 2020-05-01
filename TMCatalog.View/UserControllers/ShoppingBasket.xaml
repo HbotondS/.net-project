@@ -16,12 +16,18 @@
                 VerticalAlignment="Top"
                 Content="Clear shopping basket"
                 Command="{Binding ClearBasket}"/>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding StockCollection}" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding StockCollection}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedItem}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Article.Description}" Width="*" Header="Article"/>
                 <DataGridTextColumn Binding="{Binding Quantity}" Width="Auto" Header="Quantity"/>
                 <DataGridTextColumn Binding="{Binding Price}" Width="Auto" Header="Price"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Remove from shopping basket"
+                              Command="{Binding RemoveFromShoppingBasket}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
 </UserControl>

@@ -17,6 +17,8 @@ namespace TMCatalog.ViewModel.UserControlls
             this.StockCollection = new ObservableCollection<Stock>();
 
             this.ClearBasket = new RelayCommand(this.ClearShoppingBasket);
+            
+            this.RemoveFromShoppingBasket = new RelayCommand(this.RemoveFromShoppingBasketExecute, this.RemoveFromShoppingBasketCanExecute);
         }
 
         public void AddToShoppingBasket(IArticle article)
@@ -38,11 +40,32 @@ namespace TMCatalog.ViewModel.UserControlls
                 this.RaisePropertyChanged();
             }
         }
+        
+        private Stock selectedItem;
+        public Stock SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                selectedItem = value;
+                this.RaisePropertyChanged();
+            }
+        }
 
         public RelayCommand ClearBasket { get; set; }
         public void ClearShoppingBasket()
         {
             stockCollection.ToList().All(o => stockCollection.Remove(o));
+        }
+        
+        public RelayCommand RemoveFromShoppingBasket { get; set; }
+        private void RemoveFromShoppingBasketExecute()
+        {
+            this.stockCollection.Remove(this.selectedItem);
+        }
+        private bool RemoveFromShoppingBasketCanExecute()
+        {
+            return this.SelectedItem != null;
         }
     }
 }
