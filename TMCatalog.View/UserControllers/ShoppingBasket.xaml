@@ -7,7 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DataGrid ItemsSource="{Binding StockCollection}" IsReadOnly="True" AutoGenerateColumns="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Content="Clear shopping basket"
+                Command="{Binding ClearBasket}"/>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding StockCollection}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Article.Description}" Width="*" Header="Article"/>
                 <DataGridTextColumn Binding="{Binding Quantity}" Width="Auto" Header="Quantity"/>

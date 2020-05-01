@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using TMCatalog.Common.Interfaces;
 using TMCatalog.Common.Interfaces.TMCatalogContents;
 using TMCatalog.Common.MVVM;
@@ -14,6 +15,8 @@ namespace TMCatalog.ViewModel.UserControlls
         public ShoppingBasketViewModel()
         {
             this.StockCollection = new ObservableCollection<Stock>();
+
+            this.ClearBasket = new RelayCommand(this.ClearShoppingBasket);
         }
 
         public void AddToShoppingBasket(IArticle article)
@@ -34,6 +37,12 @@ namespace TMCatalog.ViewModel.UserControlls
                 stockCollection = value;
                 this.RaisePropertyChanged();
             }
+        }
+
+        public RelayCommand ClearBasket { get; set; }
+        public void ClearShoppingBasket()
+        {
+            stockCollection.ToList().All(o => stockCollection.Remove(o));
         }
     }
 }
