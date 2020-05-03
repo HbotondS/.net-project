@@ -93,14 +93,13 @@ namespace TMCatalog.ViewModel.UserControlls
                 XmlWriter xmlWriter = XmlWriter.Create(fbd.SelectedPath + "/order.xml");
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("Order");
-                stockCollection.ToList().All(o =>
+                stockCollection.ToList().ForEach(o =>
                 {
                     xmlWriter.WriteStartElement("Item");
                     xmlWriter.WriteAttributeString("Description", o.Article.Description);
                     xmlWriter.WriteAttributeString("Quantity", o.Quantity.ToString());
                     xmlWriter.WriteAttributeString("Price", o.Price.ToString());
                     xmlWriter.WriteEndElement();
-                    return false;
                 });
                 xmlWriter.WriteEndDocument();
                 xmlWriter.Close();
